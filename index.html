@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilyane Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="overlay" id="welcomeOverlay">
+        <div class="welcome-notif">
+            <div class="notif-form-shape"></div>
+            <h3>Bienvenue !</h3>
+            <p class="notif-text">Dis-moi ton nom afin qu'on puisse personnaliser ton dashboard 😎</p>
+            <input type="text" id="nameInput" placeholder="Ton prénom..." autocomplete="off">
+            <button id="closeNotif">C'est parti !</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-area">DASHBOARD</div>
+            <nav class="menu">
+                <a href="#" class="active">🏠 Accueil</a>
+            </nav>
+        </aside>
+
+        <header class="header">
+            <h2 id="userWelcome">Dashboard</h2>
+        </header>
+
+        <main class="main-content">
+            <div class="card card-wide">
+                <h3>Heure Actuelle</h3>
+                <div id="clock">00:00:00</div>
+            </div>
+
+            <div class="card">
+                <h3>Progression</h3>
+                <div class="stat-container">
+                    <div id="progression" class="stat-circle">0%</div>
+                    <div class="progress-bar-bg">
+                        <div id="progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+                <p id="stat-message" style="text-align:center; color:#888; margin-top:10px;">0 tâche faite</p>
+            </div>
+
+            <div class="card">
+                <div class="note-header">
+                    <h3>Mes Notes</h3>
+                    <button class="add-note-btn" id="saveNote">+</button>
+                </div>
+                <input type="text" class="note-title" id="nTitle" placeholder="Titre">
+                <textarea class="note-body" id="nBody" placeholder="Écris ici..."></textarea>
+                <div id="savedNotes"></div>
+            </div>
+
+            <div class="card card-todo">
+                <h3>Ma To-Do List</h3>
+                <div class="input-row">
+                    <input type="text" id="todoInput" placeholder="Ajouter une tâche...">
+                    <button id="addTodo">Add</button>
+                </div>
+                <ul id="todoList"></ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

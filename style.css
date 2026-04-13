@@ -1,0 +1,51 @@
+/* DESIGN ORANGE NÉON - SIMPLE & PROPRE */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #0f0f0f; color: white; height: 100vh; overflow: hidden; }
+
+.container { display: grid; height: 100vh; grid-template-columns: 240px 1fr; grid-template-rows: 70px 1fr; grid-template-areas: "sidebar header" "sidebar main"; }
+
+/* SIDEBAR & HEADER */
+.sidebar { grid-area: sidebar; background: #181818; border-right: 1px solid #333; }
+.logo-area { padding: 25px; font-weight: bold; color: #ff8c42; text-align: center; font-size: 1.3rem; letter-spacing: 2px; }
+.menu a { display: block; color: white; text-decoration: none; padding: 15px; margin: 5px 10px; border-radius: 8px; background: #252525; border-left: 4px solid #ff8c42; }
+.header { grid-area: header; background: #181818; display: flex; align-items: center; padding: 0 30px; border-bottom: 1px solid #333; }
+
+/* GRILLE PRINCIPALE */
+.main-content { grid-area: main; padding: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; overflow-y: auto; }
+.card { background: #242424; border-radius: 15px; padding: 25px; border: 1px solid #333; min-height: 280px; }
+.card h3 { font-size: 0.7rem; color: #888; text-transform: uppercase; margin-bottom: 15px; }
+
+/* HORLOGE */
+.card-wide { grid-column: 1 / -1; min-height: auto; text-align: center; padding: 40px; }
+#clock { font-size: 6rem; font-weight: bold; color: #ff8c42; text-shadow: 0 0 20px rgba(255, 140, 66, 0.4); }
+
+/* PROGRESSION */
+.stat-circle { font-size: 3.5rem; font-weight: bold; color: #00ff88; text-align: center; }
+.progress-bar-bg { width: 100%; height: 12px; background: #121212; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
+.progress-bar-fill { width: 0%; height: 100%; background: #ff8c42; transition: 0.5s ease; }
+
+/* NOTES */
+.note-header { display: flex; justify-content: space-between; align-items: center; }
+.add-note-btn { background: #ff8c42; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+.note-title { background: transparent; border: none; color: white; font-size: 1.8rem; font-weight: bold; outline: none; width: 100%; margin-top: 10px; }
+.note-body { background: transparent; border: none; color: #aaa; width: 100%; height: 80px; outline: none; resize: none; margin-top: 10px; font-size: 1.1rem; }
+.saved-note-item { background: #1a1a1a; padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 4px solid #ff8c42; display: flex; justify-content: space-between; }
+
+/* TO-DO LIST */
+.input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+#todoInput { flex: 1; background: #121212; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; outline: none; }
+#addTodo { background: #ff8c42; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+#todoList li { background: #333; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+.todo-left { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+.custom-checkbox { width: 25px; height: 25px; border: 3px solid #e50914; border-radius: 8px; }
+.task-check:checked + .custom-checkbox { background: #00ff88; border-color: #00ff88; }
+.task-check { display: none; }
+.completed span { text-decoration: line-through; color: #777; }
+.del-btn { background: none; border: none; color: #777; cursor: pointer; font-size: 1.2rem; }
+
+/* NOTIFICATION NÉON */
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); display: none; justify-content: center; align-items: center; z-index: 10000; }
+.welcome-notif { background: #1a1a1a; width: 400px; padding: 50px; border-radius: 40px; border: 3px solid #ff8c42; text-align: center; box-shadow: 0 0 30px rgba(255, 140, 66, 0.5); }
+.notif-text { color: #ddd; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.4; }
+.welcome-notif input { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: white; margin-bottom: 20px; border-radius: 15px; text-align: center; outline: none; }
+.welcome-notif button { width: 100%; padding: 15px; background: #ff8c42; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 1rem; }
