@@ -4,23 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('closeNotif');
     const welcomeTitle = document.getElementById('userWelcome');
 
-    // 1. BULLE DE BIENVENUE
-    // On l'affiche avec un petit délai pour l'effet "Wow"
-    setTimeout(() => { 
-        overlay.style.display = 'flex'; 
-        if(nameInput) nameInput.focus(); 
-    }, 500);
-
-    function start() {
-        const name = nameInput.value.trim() || "Lilyane";
-        welcomeTitle.textContent = "Tableau de bord de " + name;
-        overlay.style.opacity = "0"; // Transition douce
-        setTimeout(() => { overlay.style.display = "none"; }, 500);
-    }
-
-    closeBtn.addEventListener('click', start);
-    nameInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') start(); });
-
     // 2. HORLOGE (Ton code est parfait ici)
     setInterval(() => { 
         const clockEl = document.getElementById('clock');
