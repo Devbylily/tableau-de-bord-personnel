@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('welcomeOverlay');
-    const nameInput = document.getElementById('nameInput');
-    const closeBtn = document.getElementById('closeNotif');
-    const welcomeTitle = document.getElementById('userWelcome');
-
-    // 2. HORLOGE (Ton code est parfait ici)
+    // 1. HORLOGE (Elle va remarcher car on a enlevé les erreurs avant)
     setInterval(() => { 
         const clockEl = document.getElementById('clock');
         if(clockEl) clockEl.textContent = new Date().toLocaleTimeString('fr-FR'); 
     }, 1000);
 
-    // 3. TO-DO & PROGRESSION
+    // 2. TO-DO & PROGRESSION
     const todoInput = document.getElementById('todoInput');
     const addBtn = document.getElementById('addTodo');
     const list = document.getElementById('todoList');
@@ -19,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statMsg = document.getElementById('stat-message');
 
     function updateStats() {
+        if(!list) return; // Sécurité
         const items = list.querySelectorAll('li');
         const done = list.querySelectorAll('.completed').length;
         const pc = items.length === 0 ? 0 : Math.round((done / items.length) * 100);
@@ -28,35 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if(statMsg) statMsg.textContent = `${done} / ${items.length} tâche(s) faite(s)`;
     }
 
-    addBtn.addEventListener('click', () => {
-        const taskText = todoInput.value.trim();
-        if(taskText) {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <span>${taskText}</span>
-                <button class="del-btn">×</button>`;
-            
-            // Clic sur toute la ligne pour barrer
-            li.addEventListener('click', (e) => {
-                if(e.target.className !== 'del-btn') {
-                    li.classList.toggle('completed');
-                    updateStats();
-                }
-            });
+    if(addBtn) {
+        addBtn.addEventListener('click', () => {
+            const taskText = todoInput.value.trim();
+            if(taskText) {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${taskText}</span>
+                    <button class="del-btn">×</button>`;
+                
+                li.addEventListener('click', (e) => {
+                    if(e.target.className !== 'del-btn') {
+                        li.classList.toggle('completed');
+                        updateStats();
+                    }
+                });
 
-            // Bouton supprimer
-            li.querySelector('.del-btn').addEventListener('click', () => { 
-                li.remove(); 
-                updateStats(); 
-            });
-            
-            list.appendChild(li);
-            todoInput.value = "";
-            updateStats();
-        }
-    });
+                li.querySelector('.del-btn').addEventListener('click', () => { 
+                    li.remove(); 
+                    updateStats(); 
+                });
+                
+                list.appendChild(li);
+                todoInput.value = "";
+                updateStats();
+            }
+        });
+    }
 
-    // 4. NOTES (On garde ta logique de prepend, c'est top)
+    // 3. NOTES
     const saveBtn = document.getElementById('saveNote');
     const nTitle = document.getElementById('nTitle');
     const nBody = document.getElementById('nBody');
@@ -67,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(nTitle.value || nBody.value) {
                 const div = document.createElement('div');
                 div.className = 'saved-note-item';
-                div.style.marginBottom = "10px"; // Petit espace
+                div.style.marginBottom = "10px";
                 div.innerHTML = `
                     <div style="display:flex; justify-content:space-between; width:100%;">
                         <strong>${nTitle.value || "Note"}</strong>
